@@ -1,0 +1,27 @@
+#container{
+    width: 600px;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    height: 85vh;
+    border: solid 1px black;
+    
+}
+main{
+    background-color: green;
+    padding: 1rem 0;
+
+}
+
+.square{
+    width:calc(100% / 10);
+    border: solid 1px black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.squareclick{
+    background-color: blue;
+}
