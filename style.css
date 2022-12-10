@@ -3,7 +3,7 @@
     margin: auto;
     display: flex;
     flex-wrap: wrap;
-    height: 85vh;
+    height: 76vh;
     border: solid 1px black;
     
 }
@@ -25,3 +25,7 @@ main{
 .squareclick{
     background-color: blue;
 }
+.squarebombs {
+    background-color: red;
+}
+  

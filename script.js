@@ -1,29 +1,46 @@
+// Constants!
+const initButton = document.getElementById('pulsante');
+const container = document.querySelector('div#container');
+let bombs = [];
 
- 
-let pulsante= document.getElementById('pulsante')
-
-pulsante.addEventListener('click', function(){
-
-for( let i = 1; i < 101; i++){
-  let div = document.createElement('div');
-  div.innerHTML = i;
-  div.classList.add('square')
-  div.addEventListener('click', function(){
-    div.classList.add('squareclick')
-  })
-  document.getElementById('container').appendChild(div);
+const score = 0;
+// Funzioni
+const generateMinefield = () => {
+  bombs = generateArrayBombs(1, 16);
+  for (let i = 1; i < 101; i++) {
+    const div = document.createElement('div');
+    div.innerHTML = i;
+    div.classList.add('square');
+    div.setAttribute('data-index', i);
+    document.getElementById('container').appendChild(div);
   }
-},{once: true})
+  document.querySelectorAll('.square').forEach((mine) => {
+    mine.addEventListener('click', takeStep);
+  });
+};
 
-
-
-let number = []
-while(number.lenght < 16 ){
-  const randomNumber= Math.floor(Math.random() * 100)+1;
-  console.log(number.includes(randomNumber));
-  if(!number.includes){
-    number.push(randomNumber);
+function generateArrayBombs(numMin, numMax) {
+  const randMineField = Math.floor(Math.random() * (numMax - numMin)) + 1;
+  if (bombs.includes(randMineField) && bombs.length < 16) {
+    generateArrayBombs(1, 60);
+  } else {
+    bombs.push(randMineField);
+    if (bombs.length !== 16) {
+      generateArrayBombs(1, 60);
+    }
   }
+  console.log(bombs);
+  return bombs;
 }
-console.log(number);
-console.log(randomNumber)
+
+const takeStep = (event) => {
+  if (bombs.includes(parseInt(event.target.dataset.index))) {
+    alert('You Lose !');
+    event.target.classList.add('squarebombs');
+  } else {
+    event.target.classList.add('squareclick');
+  }
+};
+
+// Event Listner
+initButton.addEventListener('click', generateMinefield());
